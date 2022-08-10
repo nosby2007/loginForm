@@ -1,0 +1,116 @@
+<?php
+session_start();
+$bdd = new 
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="conecter.css" />
+    <title>loginForm</title>
+  </head>
+  <body>
+    <!---ici nous avons la nav bar-->
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">TOHAHB</a>
+        <ul>
+          <li><a href="#">acceuil</a></li>
+          <li><a href="#">Apropos</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">services</a></li>
+          <li><button class="btn" id="displayForm">se connecter</button></li>
+        </ul>
+      </nav>
+<!------ici n ous avons la section des login-->
+      <section>
+        <div class="sec-container">
+          <div class="form-wrapper">
+            <div class="card">
+              <div class="card-header">
+                <div id="forLogin" class="form-header active">se connecter</div>
+                <div id="forRegister" class="form-header">s'inscrire</div>
+              </div>
+              <div class="card-body" id="formContainer">
+                <form id="loginForm">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="@utilisateur"
+                  />
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="@mot de passe"
+                  />
+                  <button class="formButton">connexion</button>
+                </form>
+
+                <form id="registerForm" class="toggleForm">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="@utilisateur"
+                  />
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="@mot de passe"
+                  />
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="@confirmer mot de pass"
+                  />
+                  <button class="formButton">inscription</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      const displayForm = _('displayForm');
+      const forlogin = _('forLogin');
+      const loginForm = _('loginForm');
+      const forRegister = _('forRegister');
+      const registerForm = _('registerForm');
+      const formContainer = _('formContainer');
+      displayForm.addEventListener('click', showForm);
+
+      forlogin.addEventListener('click', () => {
+        forlogin.classList.add('active');
+        forRegister.classList.remove('active');
+        if (loginForm.classList.contains('toggleForm')) {
+            formContainer.style.transform = 'translate(0%)';
+            formContainer.style.transition = 'transform .5s';
+            registerForm.classList.add('toggleForm');
+            loginForm.classList.remove('toggleForm');
+        }
+
+      })
+
+      forRegister.addEventListener('click', () => {
+        forlogin.classList.remove('active');
+        forRegister.classList.add('active');
+        if (registerForm.classList.contains('toggleForm')) {
+            formContainer.style.transform = 'translate(-100%)';
+            formContainer.style.transition = 'transform .5s';
+            registerForm.classList.remove('toggleForm');
+            loginForm.classList.add('toggleForm');
+        }
+      })
+
+    function _(e) {
+        return document.getElementById(e);
+      }
+
+      function showForm() {
+        document.querySelector(".form-wrapper .card").classList.toggle("show");
+      }
+    </script> <!---la c'est le javascript-->
+  </body>
+</html>
